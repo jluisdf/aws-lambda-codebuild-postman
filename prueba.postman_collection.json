@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "56d57f67-9227-493f-8a7a-3d8c555af480",
+		"name": "Pruebas borrar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "countries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"    ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authority",
+						"value": "api.delivery.alsea.net"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"88\", \"Google Chrome\";v=\"88\", \";Not A Brand\";v=\"99\""
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "x-user-agent",
+						"value": "Alsea"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer eyJraWQiOiJ3NFJwcGdvRGdnXC9zXC9KeitnZFFETjQ3eWVDVklFWldXMkRGN2FGZ2NoSlU9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiIyMHJqams4NGVsNzFidGFnNjg4c3BucGZxYyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL2Fsc2VhQXV0aC5jb21cL2VwYXltZW50IGh0dHBzOlwvXC9hbHNlYUF1dGguY29tXC9jbXMgaHR0cHM6XC9cL2Fsc2VhQXV0aC5jb21cL2FwaSIsImF1dGhfdGltZSI6MTYxNDA1MzYzMSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfQnlLcGxyVnhBIiwiZXhwIjoxNjE0MDU3MjMxLCJpYXQiOjE2MTQwNTM2MzEsInZlcnNpb24iOjIsImp0aSI6ImVjY2JiN2FmLTBmZjYtNDRlZC1hNTY0LTc4YWRmNWIyZDYzYSIsImNsaWVudF9pZCI6IjIwcmpqazg0ZWw3MWJ0YWc2ODhzcG5wZnFjIn0.kcYrPPvi9v1nF0wlMfGz6BO5AaMXAHxfVlb5XXxrvpctiw6F10reznK6GGIGNgykujR75QYzpyiD24Q92HHD_ZX3hmLoF6D4lcjp_PVZ317KTDhEixFbXJ_RwewZK6RXkvsB4sOLGpyNfJxi7VohoIn_Slzkh4aRdSDfyzbcLsTn8NTHEtysaYAmYd2cZGOnh4-n45X9nFvr7jgqxm0fKvck0zcXX5D_q6CKhCDyO6ok4rtFxCT998h8v32YQjI-A0IeO-d4FFrFynfuLjAobOpyvwI4rGCH3IFCKbk0vZVQD5BFzI0DXYiqbljnq78vEznN2uT3Dyj2haKgfQ4o7A"
+					},
+					{
+						"key": "origin",
+						"value": "https://consulta.delivery.alsea.net"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-site"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://consulta.delivery.alsea.net/"
+					},
+					{
+						"key": "accept-language",
+						"value": "es-419,es;q=0.9"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/countries?id=100",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"countries"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "brands",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const jsonData = pm.response.json();",
+							"pm.test(\"Response content not empty\", function () {",
+							"    pm.expect(jsonData.content).not.empty",
+							"    //pm.expect(jsonData.content).not.to.be.undefined",
+							"    //pm.expect(jsonData.value).to.eql(100);",
+							"});",
+							"",
+							"pm.test(\"Test data type of the response\", () => {",
+							"    // Types: object, array, string, number, ",
+							"    pm.expect(jsonData.content).to.be.an(\"array\"); // ",
+							"    pm.expect(jsonData.content[0].id).to.be.a(\"number\");",
+							"    pm.expect(jsonData.content[0].name).to.be.a(\"string\");",
+							"    pm.expect(jsonData.content[0].img).to.be.a(\"string\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Chromium\";v=\"88\", \"Google Chrome\";v=\"88\", \";Not A Brand\";v=\"99\""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "X-User-Agent",
+						"value": "Alsea"
+					},
+					{
+						"key": "Referer",
+						"value": "https://consulta.delivery.alsea.net/"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJraWQiOiJ3NFJwcGdvRGdnXC9zXC9KeitnZFFETjQ3eWVDVklFWldXMkRGN2FGZ2NoSlU9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiIyMHJqams4NGVsNzFidGFnNjg4c3BucGZxYyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL2Fsc2VhQXV0aC5jb21cL2VwYXltZW50IGh0dHBzOlwvXC9hbHNlYUF1dGguY29tXC9jbXMgaHR0cHM6XC9cL2Fsc2VhQXV0aC5jb21cL2FwaSIsImF1dGhfdGltZSI6MTYxNDA1MzYzMSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfQnlLcGxyVnhBIiwiZXhwIjoxNjE0MDU3MjMxLCJpYXQiOjE2MTQwNTM2MzEsInZlcnNpb24iOjIsImp0aSI6ImVjY2JiN2FmLTBmZjYtNDRlZC1hNTY0LTc4YWRmNWIyZDYzYSIsImNsaWVudF9pZCI6IjIwcmpqazg0ZWw3MWJ0YWc2ODhzcG5wZnFjIn0.kcYrPPvi9v1nF0wlMfGz6BO5AaMXAHxfVlb5XXxrvpctiw6F10reznK6GGIGNgykujR75QYzpyiD24Q92HHD_ZX3hmLoF6D4lcjp_PVZ317KTDhEixFbXJ_RwewZK6RXkvsB4sOLGpyNfJxi7VohoIn_Slzkh4aRdSDfyzbcLsTn8NTHEtysaYAmYd2cZGOnh4-n45X9nFvr7jgqxm0fKvck0zcXX5D_q6CKhCDyO6ok4rtFxCT998h8v32YQjI-A0IeO-d4FFrFynfuLjAobOpyvwI4rGCH3IFCKbk0vZVQD5BFzI0DXYiqbljnq78vEznN2uT3Dyj2haKgfQ4o7A"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/brands?countryId=1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"brands"
+					],
+					"query": [
+						{
+							"key": "countryId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "branches",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authority",
+						"value": "api.delivery.alsea.net"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "x-user-agent",
+						"value": "Alsea"
+					},
+					{
+						"key": "authorization",
+						"value": "Bearer eyJraWQiOiI2SHhoaHBWXC9tSEhKNTlPRGNNMmwrNXBKWktaOVwvUlhEZmJoalF4aEdCR0U9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI1cG1ydHJuMWthNWxyMThwbmxicWUxYXA4NyIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiaHR0cHM6XC9cL2Fsc2VhQXV0aC5jb21cL2FwaSBodHRwczpcL1wvZGVsaXZlcnkuY29tXC9hcGkgaHR0cHM6XC9cL2RlbGl2ZXJ5LmNvbVwvZXBheW1lbnQiLCJhdXRoX3RpbWUiOjE2MTQxMTAwOTksImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xXzNaRGRsdjJkRCIsImV4cCI6MTYxNDExMDM5OSwiaWF0IjoxNjE0MTEwMDk5LCJ2ZXJzaW9uIjoyLCJqdGkiOiI1M2I5OWJmNy1lYzdkLTQwYjUtYjIxNC0wYzRiNGNkNWMxYzgiLCJjbGllbnRfaWQiOiI1cG1ydHJuMWthNWxyMThwbmxicWUxYXA4NyJ9.KGqKXUTvM3WsIUwwIC7Wb3Hb3c8IhGd3Eztp82aj2rd0OeS6fN35QacYSTqOr9Uaf6ZJTleG5_gUx1JJyobvmU99ED80Wp37-0N8AsRI9i7rufi-3-ZrQDj7P27zA8cRQ80ASW1Uel3PUw0hRCRvvRgs74Thzl2GJnqw1BHRe7_NuB7_FxplCj1kcn8aimmxzKeHQp-HOTTVG3u8ugp2F4sbYBTHytoTYXiNHSZaJ9LmZPwfEZSln9Nu9vdvP0B8-BG5eOUbENACEV5YzmP8PEQfohNFFL0QAl-4GQXL_tshsV3cRK4PzMF0ljYI2V56xRzUcJ3B9qVlFz9f4cx1GQ"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
+					},
+					{
+						"key": "origin",
+						"value": "http://localhost:3000"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "cross-site"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "http://localhost:3000/"
+					},
+					{
+						"key": "accept-language",
+						"value": "es-ES,es;q=0.9"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/branches?countryId=1&brandId=1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"branches"
+					],
+					"query": [
+						{
+							"key": "countryId",
+							"value": "1"
+						},
+						{
+							"key": "brandId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

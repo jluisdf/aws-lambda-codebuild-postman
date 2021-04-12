@@ -1,0 +1,31 @@
+version: 0.1
+phases:
+  install:
+    commands:
+      - npm install -g newman
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      # ejecucion de pruebas
+      # - python -m unittest discover tests
+  build:
+    commands:
+      - echo Build started on `date`
+      - zip -r app.zip .
+      - newman run prueba.postman_collection.json --environment dev.postman_environment.json
+      - newman run prueba.postman_collection.json --environment dev.postman_environment.json -r junit
+  post_build:
+    commands:
+      # copy the contents of /build to S3
+      - aws lambda update-function-code --function-name mylambdafunctioncli --zip-file fileb://app.zip --region us-east-1
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: out
+
+reports:
+  JUnitReports: # CodeBuild will create a report group called "SurefireReports".
+    files: #Store all of the files
+      - '**/*'
+    base-directory: 'newman' # Location of the reports
